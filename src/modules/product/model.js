@@ -1,25 +1,23 @@
-'use strict'
-
 // Product
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   return sequelize.define('products', {
     name: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
     },
     slug: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
     },
     description: {
-      type: DataTypes.TEXT
+      type: DataTypes.TEXT,
     },
     type: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
     },
     gender: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
     },
     image: {
-      type: DataTypes.TEXT
-    }
-  })
-}
+      type: DataTypes.TEXT,
+    },
+  });
+};

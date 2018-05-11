@@ -1,18 +1,16 @@
-'use strict'
-
-module.exports = function(sequelize, DataTypes) {
-  let Crate = sequelize.define('crates', {
+module.exports = function (sequelize, DataTypes) {
+  const Crate = sequelize.define('crates', {
     name: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
     },
     description: {
-      type: DataTypes.TEXT
-    }
-  })
+      type: DataTypes.TEXT,
+    },
+  });
 
-  Crate.associate = function(models) {
-    Crate.hasMany(models.Subscription)
-  }
+  Crate.associate = function (models) {
+    Crate.hasMany(models.Subscription);
+  };
 
-  return Crate
-}
+  return Crate;
+};

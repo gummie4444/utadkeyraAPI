@@ -1,20 +1,18 @@
-'use strict'
-
 // Subscription
-module.exports = function(sequelize, DataTypes) {
-  let Subscription = sequelize.define('subscriptions', {
+module.exports = function (sequelize, DataTypes) {
+  const Subscription = sequelize.define('subscriptions', {
     userId: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
     },
     crateId: {
-      type: DataTypes.INTEGER
-    }
-  })
+      type: DataTypes.INTEGER,
+    },
+  });
 
-  Subscription.associate = function(models) {
-    Subscription.belongsTo(models.User)
-    Subscription.belongsTo(models.Crate)
-  }
+  Subscription.associate = function (models) {
+    Subscription.belongsTo(models.User);
+    Subscription.belongsTo(models.Crate);
+  };
 
-  return Subscription
-}
+  return Subscription;
+};

@@ -1,5 +1,5 @@
 // Imports
-import { GraphQLObjectType, GraphQLString, GraphQLInt } from 'graphql'
+import { GraphQLObjectType, GraphQLString, GraphQLInt } from 'graphql';
 
 // User type
 const UserType = new GraphQLObjectType({
@@ -13,9 +13,9 @@ const UserType = new GraphQLObjectType({
     password: { type: GraphQLString },
     role: { type: GraphQLString },
     createdAt: { type: GraphQLString },
-    updatedAt: { type: GraphQLString }
-  })
-})
+    updatedAt: { type: GraphQLString },
+  }),
+});
 
 // User Login type
 const UserLoginType = new GraphQLObjectType({
@@ -24,9 +24,9 @@ const UserLoginType = new GraphQLObjectType({
 
   fields: () => ({
     user: { type: UserType },
-    token: { type: GraphQLString }
-  })
-})
+    token: { type: GraphQLString },
+  }),
+});
 
 // User Gender type
 const UserGenderType = new GraphQLObjectType({
@@ -35,8 +35,8 @@ const UserGenderType = new GraphQLObjectType({
 
   fields: () => ({
     id: { type: GraphQLInt },
-    name: { type: GraphQLString }
-  })
-})
+    name: { type: GraphQLString },
+  }),
+});
 
-export { UserType, UserLoginType, UserGenderType }
+export { UserType, UserLoginType, UserGenderType };

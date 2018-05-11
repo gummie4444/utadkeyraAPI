@@ -1,5 +1,5 @@
 // Imports
-import { GraphQLObjectType, GraphQLString, GraphQLInt } from 'graphql'
+import { GraphQLObjectType, GraphQLString, GraphQLInt } from 'graphql';
 
 // Product type
 const ProductType = new GraphQLObjectType({
@@ -15,9 +15,9 @@ const ProductType = new GraphQLObjectType({
     description: { type: GraphQLString },
     image: { type: GraphQLString },
     createdAt: { type: GraphQLString },
-    updatedAt: { type: GraphQLString }
-  })
-})
+    updatedAt: { type: GraphQLString },
+  }),
+});
 
 // User Gender type
 const ProductTypesType = new GraphQLObjectType({
@@ -26,8 +26,8 @@ const ProductTypesType = new GraphQLObjectType({
 
   fields: () => ({
     id: { type: GraphQLInt },
-    name: { type: GraphQLString }
-  })
-})
+    name: { type: GraphQLString },
+  }),
+});
 
-export { ProductType, ProductTypesType }
+export { ProductType, ProductTypesType };

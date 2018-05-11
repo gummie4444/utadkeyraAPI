@@ -1,24 +1,24 @@
 // Imports
-import { GraphQLInt, GraphQLString, GraphQLList } from 'graphql'
+import { GraphQLInt, GraphQLString, GraphQLList } from 'graphql';
 
 // App Imports
-import CrateType from './types'
-import { getAll, getById } from './resolvers'
+import CrateType from './types';
+import { getAll, getById } from './resolvers';
 
 // Crates All
 export const crates = {
   type: new GraphQLList(CrateType),
   args: {
-    orderBy: { type: GraphQLString }
+    orderBy: { type: GraphQLString },
   },
-  resolve: getAll
-}
+  resolve: getAll,
+};
 
 // Crate By ID
 export const crateById = {
   type: CrateType,
   args: {
-    crateId: { type: GraphQLInt }
+    crateId: { type: GraphQLInt },
   },
-  resolve: getById
-}
+  resolve: getById,
+};

@@ -1,5 +1,5 @@
 // Imports
-import { GraphQLObjectType, GraphQLString, GraphQLInt } from 'graphql'
+import { GraphQLObjectType, GraphQLString, GraphQLInt } from 'graphql';
 
 // Crate type
 const CrateType = new GraphQLObjectType({
@@ -11,8 +11,8 @@ const CrateType = new GraphQLObjectType({
     name: { type: GraphQLString },
     description: { type: GraphQLString },
     createdAt: { type: GraphQLString },
-    updatedAt: { type: GraphQLString }
-  })
-})
+    updatedAt: { type: GraphQLString },
+  }),
+});
 
-export default CrateType
+export default CrateType;

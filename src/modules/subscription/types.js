@@ -1,9 +1,9 @@
 // Imports
-import { GraphQLObjectType, GraphQLString, GraphQLInt } from 'graphql'
+import { GraphQLObjectType, GraphQLString, GraphQLInt } from 'graphql';
 
 // App Imports
-import { UserType } from '../user/types'
-import CrateType from '../crate/types'
+import { UserType } from '../user/types';
+import CrateType from '../crate/types';
 
 // Subscription type
 const SubscriptionType = new GraphQLObjectType({
@@ -15,8 +15,8 @@ const SubscriptionType = new GraphQLObjectType({
     user: { type: UserType },
     crate: { type: CrateType },
     createdAt: { type: GraphQLString },
-    updatedAt: { type: GraphQLString }
-  })
-})
+    updatedAt: { type: GraphQLString },
+  }),
+});
 
-export default SubscriptionType
+export default SubscriptionType;

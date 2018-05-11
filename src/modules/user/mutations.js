@@ -1,9 +1,9 @@
 // Imports
-import { GraphQLString, GraphQLInt } from 'graphql'
+import { GraphQLString, GraphQLInt } from 'graphql';
 
 // App Imports
-import { UserType } from './types'
-import { create, remove } from './resolvers'
+import { UserType } from './types';
+import { create, remove } from './resolvers';
 
 // Create
 export const userSignup = {
@@ -11,21 +11,21 @@ export const userSignup = {
   args: {
     name: {
       name: 'name',
-      type: GraphQLString
+      type: GraphQLString,
     },
 
     email: {
       name: 'email',
-      type: GraphQLString
+      type: GraphQLString,
     },
 
     password: {
       name: 'password',
-      type: GraphQLString
-    }
+      type: GraphQLString,
+    },
   },
-  resolve: create
-}
+  resolve: create,
+};
 
 // Remove
 export const userRemove = {
@@ -33,8 +33,8 @@ export const userRemove = {
   args: {
     id: {
       name: 'id',
-      type: GraphQLInt
-    }
+      type: GraphQLInt,
+    },
   },
-  resolve: remove
-}
+  resolve: remove,
+};

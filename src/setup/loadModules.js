@@ -1,30 +1,30 @@
 // Imports
-import express from 'express'
-import path from 'path'
-import cors from 'cors'
-import bodyParser from 'body-parser'
-import cookieParser from 'cookie-parser'
-import morgan from 'morgan'
+import express from 'express';
+import path from 'path';
+import cors from 'cors';
+import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
+import morgan from 'morgan';
 
 // Load express modules
 export default function (server) {
-  console.info('SETUP - Loading modules...')
+  console.info('SETUP - Loading modules...');
 
   // Enable CORS
-  server.use(cors())
+  server.use(cors());
 
   // Request body parser
-  server.use(bodyParser.json())
-  server.use(bodyParser.urlencoded({ extended: false }))
+  server.use(bodyParser.json());
+  server.use(bodyParser.urlencoded({ extended: false }));
 
   // Request body cookie parser
-  server.use(cookieParser())
+  server.use(cookieParser());
 
   // Static files folder
-  server.use(express.static(path.join(__dirname, '..', '..', 'public')))
+  server.use(express.static(path.join(__dirname, '..', '..', 'public')));
 
   // HTTP logger
-  if(process.env.NODE_ENV === 'development') {
-    server.use(morgan('tiny'))
+  if (process.env.NODE_ENV === 'development') {
+    server.use(morgan('tiny'));
   }
 }

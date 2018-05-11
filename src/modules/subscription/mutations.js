@@ -1,9 +1,9 @@
 // Imports
-import { GraphQLInt } from 'graphql'
+import { GraphQLInt } from 'graphql';
 
 // App Imports
-import SubscriptionType from './types'
-import { create, remove } from './resolvers'
+import SubscriptionType from './types';
+import { create, remove } from './resolvers';
 
 // Subscription create
 export const subscriptionCreate = {
@@ -11,11 +11,11 @@ export const subscriptionCreate = {
   args: {
     crateId: {
       name: 'crateId',
-      type: GraphQLInt
-    }
+      type: GraphQLInt,
+    },
   },
-  resolve: create
-}
+  resolve: create,
+};
 
 // Subscription remove
 export const subscriptionRemove = {
@@ -23,8 +23,8 @@ export const subscriptionRemove = {
   args: {
     id: {
       name: 'id',
-      type: GraphQLInt
-    }
+      type: GraphQLInt,
+    },
   },
-  resolve: remove
-}
+  resolve: remove,
+};

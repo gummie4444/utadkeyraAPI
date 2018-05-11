@@ -1,9 +1,9 @@
 // Imports
-import { GraphQLString, GraphQLInt } from 'graphql'
+import { GraphQLString, GraphQLInt } from 'graphql';
 
 // App Imports
-import CrateType from './types'
-import { create, remove, update } from './resolvers'
+import CrateType from './types';
+import { create, remove, update } from './resolvers';
 
 // Crate create
 export const crateCreate = {
@@ -11,16 +11,16 @@ export const crateCreate = {
   args: {
     name: {
       name: 'name',
-      type: GraphQLString
+      type: GraphQLString,
     },
 
     description: {
       name: 'description',
-      type: GraphQLString
-    }
+      type: GraphQLString,
+    },
   },
-  resolve: create
-}
+  resolve: create,
+};
 
 // Crate update
 export const crateUpdate = {
@@ -28,21 +28,21 @@ export const crateUpdate = {
   args: {
     id: {
       name: 'id',
-      type: GraphQLInt
+      type: GraphQLInt,
     },
 
     name: {
       name: 'name',
-      type: GraphQLString
+      type: GraphQLString,
     },
 
     description: {
       name: 'description',
-      type: GraphQLString
-    }
+      type: GraphQLString,
+    },
   },
-  resolve: update
-}
+  resolve: update,
+};
 
 // Crate remove
 export const crateRemove = {
@@ -50,8 +50,8 @@ export const crateRemove = {
   args: {
     id: {
       name: 'id',
-      type: GraphQLInt
-    }
+      type: GraphQLInt,
+    },
   },
-  resolve: remove
-}
+  resolve: remove,
+};
