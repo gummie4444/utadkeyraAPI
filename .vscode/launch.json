@@ -1,0 +1,28 @@
+{
+    "version": "0.2.0",
+    "diagnosticLogging": true,
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Nodemon",
+            "webRoot": "${workspaceRoot}/src",
+            "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/nodemon",
+            "args": ["${workspaceRoot}/src/index.js"],
+            "restart": true,
+            "protocol": "inspector",
+            "stopOnEntry": false,
+            "runtimeArgs": [
+              "--nolazy",
+              "--require",
+              "babel-register"
+            ],
+            "console": "internalConsole",
+            "env": {
+                "NODE_ENV": "development"
+              },
+            "sourceMaps": true
+        }
+    ]
+  }
+
