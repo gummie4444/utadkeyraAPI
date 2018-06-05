@@ -9,7 +9,7 @@
     "setup:db": "npm run db:migrate && npm run db:seed",
     "db:migrate": "./node_modules/.bin/sequelize db:migrate",
     "db:seed": "./node_modules/.bin/sequelize db:seed:all",
-    "start": "export NODE_ENV=development && nodemon src/index.js --exec babel-node --inspect=1234",
+    "start": "export NODE_ENV=development && nodemon src/index.js --exec babel-node --inspect=1235",
     "start:prod": "export NODE_ENV=production && npm run build:prod && npm run start:server",
     "build:prod": "babel src -s -D -d build",
     "start:server": "node build/index.js"
@@ -42,6 +42,7 @@
     "express": "^5.0.0-alpha.2",
     "express-graphql": "^0.6.12",
     "graphql": "^0.13.2",
+    "graphql-iso-date": "^3.5.0",
     "jsonwebtoken": "^8.2.1",
     "morgan": "^1.9.0",
     "multer": "^1.3.0",

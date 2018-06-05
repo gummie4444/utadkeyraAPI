@@ -16,8 +16,11 @@ const connection = new Sequelize(
   {
     host: databaseConfigEnv.host,
     dialect: databaseConfigEnv.dialect,
-    logging: false,
+    logging: true,
     operatorsAliases: Sequelize.Op,
+    define: {
+      timestamps: false,
+    },
   },
 );
 

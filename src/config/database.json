@@ -9,7 +9,7 @@
   },
   "production": {
     "username": "root",
-    "password": null,
+    "password": "D4V1DV1Ll4!!",
     "database": "crate",
     "host": "127.0.0.1",
     "dialect": "mysql",
