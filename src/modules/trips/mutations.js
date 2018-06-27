@@ -1,11 +1,43 @@
 // Imports
-import { GraphQLString, GraphQLInt } from 'graphql';
+import {
+  GraphQLString,
+  GraphQLInt,
+  GraphQLInputObjectType,
+  GraphQLList,
+  GraphQLBoolean,
+} from 'graphql';
 
 import { GraphQLDateTime } from 'graphql-iso-date';
 
 // App Imports
-import { TripType } from './types';
+import { TripType, TripInputType } from './types';
 import { create, remove, update } from './resolvers';
+import { TripDetailsType } from '../tripDetails/types';
+
+const TripDetailsInputType = new GraphQLInputObjectType({
+  name: 'tripDetailsInputType',
+  description: 'Trip Details Type',
+  fields: () => ({
+    id: { type: GraphQLInt },
+    tripId: { type: GraphQLInt },
+    email: { type: GraphQLString },
+    name: { type: GraphQLString },
+    notes: { type: GraphQLString },
+    phone: { type: GraphQLString },
+    mobile: { type: GraphQLString },
+    seats: { type: GraphQLInt },
+    smokeStatus: { type: GraphQLBoolean },
+  }),
+});
+
+// export const bulkTripCreate = {
+//   type: TripInputType,
+//   description: 'Test',
+//   args: {
+//     trips: new GraphQLList(TripInputType),
+//   },
+//   resolve: bulkCreate,
+// };
 
 // Region create
 export const tripCreate = {
@@ -38,6 +70,10 @@ export const tripCreate = {
     type: {
       name: 'type',
       type: GraphQLInt,
+    },
+    tripDetails: {
+      name: 'tripDetails',
+      type: TripDetailsInputType,
     },
   },
   resolve: create,

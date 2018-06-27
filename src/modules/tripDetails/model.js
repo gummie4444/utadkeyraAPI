@@ -7,7 +7,7 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
     },
     mobile: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.TEXT,
     },
     name: {
       type: DataTypes.STRING,
@@ -16,7 +16,7 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.TEXT,
     },
     phone: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.TEXT,
     },
     seats: {
       type: DataTypes.INTEGER,

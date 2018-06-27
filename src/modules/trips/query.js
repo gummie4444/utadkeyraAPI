@@ -1,5 +1,6 @@
 // Imports
 import { GraphQLInt, GraphQLString, GraphQLList } from 'graphql';
+import { GraphQLDateTime } from 'graphql-iso-date';
 
 // App Imports
 import { TripType } from './types';
@@ -10,6 +11,8 @@ export const trips = {
   type: new GraphQLList(TripType),
   args: {
     orderBy: { type: GraphQLString },
+    from: { type: GraphQLDateTime },
+    to: { type: GraphQLDateTime },
   },
   resolve: getAll,
 };

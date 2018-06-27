@@ -20,10 +20,10 @@ module.exports = {
         type: Sequelize.TEXT,
       },
       mobile: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.TEXT,
       },
       phone: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.TEXT,
       },
       name: {
         type: Sequelize.TEXT,

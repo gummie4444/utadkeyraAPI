@@ -1,5 +1,5 @@
 // Imports
-import { GraphQLString, GraphQLInt, GraphQLBoolean } from 'graphql';
+import { GraphQLString, GraphQLInt, GraphQLBoolean, GraphQLFloat } from 'graphql';
 
 // App Imports
 import { TripDetailsType } from './types';
@@ -27,15 +27,15 @@ export const tripDetailsCreate = {
     },
     phone: {
       name: 'phone',
-      type: GraphQLInt,
+      type: GraphQLString,
     },
     mobile: {
       name: 'mobile',
-      type: GraphQLInt,
+      type: GraphQLString,
     },
     seats: {
       name: 'seats',
-      type: GraphQLInt,
+      type: GraphQLFloat,
     },
     smokeStatus: {
       name: 'smokeStatus',
@@ -71,11 +71,11 @@ export const tripDetailsUpdate = {
     },
     phone: {
       name: 'phone',
-      type: GraphQLInt,
+      type: GraphQLString,
     },
     mobile: {
       name: 'mobile',
-      type: GraphQLInt,
+      type: GraphQLString,
     },
     seats: {
       name: 'seats',

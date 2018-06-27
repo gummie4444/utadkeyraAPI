@@ -11,6 +11,8 @@ module.exports = function (sequelize, DataTypes) {
     },
   });
 
-  City.associate = function (models) {};
+  City.associate = function (models) {
+    City.belongsTo(models.Regions, { foreignKey: 'id' });
+  };
   return City;
 };

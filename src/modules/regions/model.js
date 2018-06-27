@@ -5,8 +5,5 @@ module.exports = function (sequelize, DataTypes) {
     },
   });
 
-  // Regions.associate = function (models) {
-  //   Regions.hasMany(models.City, { foreignKey: 'regionId', sourceKey: 'id' });
-  // };
   return Regions;
 };
