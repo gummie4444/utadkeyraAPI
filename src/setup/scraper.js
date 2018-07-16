@@ -123,6 +123,6 @@ const scrapeSite = (db) => {
 };
 
 export default (db) => {
-  // scrapeSite(db);
-  // setInterval(() => scrapeSite(db), 60000);
+  scrapeSite(db);
+  setInterval(() => scrapeSite(db), 60000);
 };
