@@ -54,7 +54,7 @@ const connection = new Sequelize(
   {
     host: databaseConfigEnv.host,
     dialect: databaseConfigEnv.dialect,
-    logging: true,
+    logging: false,
     operatorsAliases,
     define: {
       timestamps: false,

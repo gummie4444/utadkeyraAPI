@@ -39,6 +39,45 @@ const TripDetailsInputType = new GraphQLInputObjectType({
 //   resolve: bulkCreate,
 // };
 
+export const tripCreateClient = {
+  type: TripType,
+  args: {
+    date: {
+      name: 'date',
+      type: GraphQLDateTime,
+    },
+    time: {
+      name: 'time',
+      type: GraphQLDateTime,
+    },
+    to: {
+      name: 'to',
+      type: GraphQLInt,
+    },
+    toNew: {
+      name: 'toNew',
+      type: GraphQLString,
+    },
+    from: {
+      name: 'from',
+      type: GraphQLInt,
+    },
+    fromNew: {
+      name: 'fromNew',
+      type: GraphQLString,
+    },
+    type: {
+      name: 'type',
+      type: GraphQLInt,
+    },
+    tripDetails: {
+      name: 'tripDetails',
+      type: TripDetailsInputType,
+    },
+  },
+  resolve: create,
+};
+
 // Region create
 export const tripCreate = {
   type: TripType,
@@ -63,9 +102,17 @@ export const tripCreate = {
       name: 'to',
       type: GraphQLInt,
     },
+    toNew: {
+      name: 'toNew',
+      type: GraphQLString,
+    },
     from: {
       name: 'from',
       type: GraphQLInt,
+    },
+    fromNew: {
+      name: 'fromNew',
+      type: GraphQLString,
     },
     type: {
       name: 'type',

@@ -51,6 +51,62 @@ export async function getAll(parentValue, { orderBy = 'asc', from, to }) {
     ],
   });
 }
+
+export async function getAllSkip(parentValue, {
+  to, from, date, skip = 1, amount = 10,
+}) {
+  console.log(to, from, date, skip, amount, 'test');
+
+  const whereObject = {};
+
+  if (from) {
+    whereObject.from = {
+      $eq: from,
+    };
+  }
+
+  if (to) {
+    whereObject.to = {
+      $eq: to,
+    };
+  }
+
+  if (date) {
+    whereObject.date = {
+      $eq: date,
+    };
+  }
+
+  whereObject.time = {
+    $gt: moment()
+      .startOf('day')
+      .toDate(),
+    $lt: moment()
+      .endOf('day')
+      .add(1, 'years')
+      .toDate(),
+  };
+
+  console.log(whereObject, 'where object ------');
+  const results = await models.Trips.findAndCountAll({
+    offset: skip,
+    limit: amount,
+    where: whereObject,
+    order: [['time', 'asc'], ['id', 'desc']],
+    // where: {
+
+    // },
+    include: [
+      { model: models.Cities, as: 'fromCity' },
+      { model: models.Cities, as: 'toCity' },
+      { model: models.TripTypes, as: 'tripType' },
+      { model: models.TripDetails, as: 'tripDetails' },
+    ],
+  });
+  const final = { count: results.count, trips: results.rows };
+
+  return final;
+}
 // bulk create
 
 export async function bulkCreate(parentValue, { trips }, { auth }) {
@@ -68,19 +124,44 @@ export async function bulkCreate(parentValue, { trips }, { auth }) {
 export async function create(
   parentValue,
   {
-    sId, sUrl, date, time, to, from, type, tripDetails,
+    sId, sUrl, date, time, to, toNew, from, fromNew, type, tripDetails,
   },
   { auth },
 ) {
+  // Create a new to destination
+  let newFromCity;
+  let newToCity;
+  console.log(to, toNew, 'NEW ITEMS TO');
+  if (!to && toNew) {
+    newToCity = await models.Cities.create({
+      sId: null,
+      name: toNew,
+      regionId: 1, // lets just put 1 as default
+    });
+  }
+  console.log(from, fromNew, 'NEW ITEMS From');
+
+  if (!from && fromNew) {
+    newFromCity = await models.Cities.create({
+      sId: null,
+      name: fromNew,
+      regionId: 1,
+    });
+  }
+  console.log(newToCity, newFromCity, 'newCity Names');
   if (true) {
-    console.log('tripDe', tripDetails);
+    let newTime;
+    if (time == null || time == 'Any') {
+      newTime = moment(date).format('YYYY-MM-DD 23:59:59');
+    }
+
     const trip = await models.Trips.create({
       sId,
       sUrl,
       date,
-      time,
-      to,
-      from,
+      time: newTime || time,
+      to: newToCity ? newToCity.id : to,
+      from: newFromCity ? newFromCity.id : from,
       type,
     });
     if (!trip) {

@@ -27,7 +27,11 @@ module.exports = function (sequelize, DataTypes) {
     Trip.belongsTo(models.Cities, { foreignKey: 'from', as: 'fromCity' });
     Trip.belongsTo(models.Cities, { foreignKey: 'to', as: 'toCity' });
     Trip.belongsTo(models.TripTypes, { foreignKey: 'type', as: 'tripType' });
-    Trip.belongsTo(models.TripDetails, { foreignKey: 'id', as: 'tripDetails' });
+    Trip.belongsTo(models.TripDetails, {
+      foreignKey: 'id',
+      as: 'tripDetails',
+      targetKey: 'tripId',
+    });
   };
 
   return Trip;
