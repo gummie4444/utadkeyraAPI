@@ -3,7 +3,7 @@ import moment from 'moment';
 // App Imports
 import models from '../../setup/models';
 import params from '../../config/params.json';
-
+import { getCityById } from '../cities/resolvers';
 // REMEMBER async function is always wrapped in a promise
 // Get trip by ID
 export async function getById(parentValue, { tripId }) {
@@ -131,7 +131,6 @@ export async function create(
   // Create a new to destination
   let newFromCity;
   let newToCity;
-  console.log(to, toNew, 'NEW ITEMS TO');
   if (!to && toNew) {
     newToCity = await models.Cities.create({
       sId: null,
@@ -139,8 +138,6 @@ export async function create(
       regionId: 1, // lets just put 1 as default
     });
   }
-  console.log(from, fromNew, 'NEW ITEMS From');
-
   if (!from && fromNew) {
     newFromCity = await models.Cities.create({
       sId: null,
@@ -148,10 +145,9 @@ export async function create(
       regionId: 1,
     });
   }
-  console.log(newToCity, newFromCity, 'newCity Names');
   if (true) {
     let newTime;
-    if (time == null || time == 'Any') {
+    if (time == null || time == 'ANY') {
       newTime = moment(date).format('YYYY-MM-DD 23:59:59');
     }
 
@@ -166,7 +162,7 @@ export async function create(
     });
     if (!trip) {
       // trip does not exists
-      throw new Error('The trip you are looking for does not exists or has been discontinued.');
+      throw new Error('Something went wrong try again');
     } else {
       const test = await models.TripDetails.create({
         tripId: trip.id,
@@ -174,10 +170,15 @@ export async function create(
       });
 
       if (test) {
+        const toCity = getCityById(null, { cityId: trip.newToCity ? newToCity.id : to });
+        const fromCity = getCityById(null, { cityId: trip.newFromCity ? newFromCity.id : from });
+
         trip.tripDetails = test;
+        trip.toCity = toCity;
+        trip.fromCity = fromCity;
         return trip;
       }
-      throw new Error(' Wrongness');
+      throw new Error(' Something went');
     }
   }
   throw new Error('Operation denied.');

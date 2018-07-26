@@ -4,7 +4,7 @@ import params from '../../config/params.json';
 
 // REMEMBER async function is always wrapped in a promise
 // Get City by ID
-export async function getById(parentValue, { cityId }) {
+export async function getCityById(parentValue, { cityId }) {
   const city = await models.Cities.findOne({
     where: { id: cityId },
     include: [{ model: models.Regions, as: 'region' }],
