@@ -8,8 +8,8 @@
     "seederStorage": "sequelize"
   },
   "production": {
-    "username": "root",
-    "password": "Gummie92",
+    "username": "jolasveinn",
+    "password": "D4V1DV1Ll4!!",
     "database": "crate",
     "host": "127.0.0.1",
     "dialect": "mysql",
