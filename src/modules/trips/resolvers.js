@@ -18,6 +18,8 @@ export async function getById(parentValue, { tripId }) {
   });
   if (!trip) {
     // trip does not exists
+    console.log('getByIdTrip', 'The trip you are looking for does not exists or has been discontinued.');
+
     throw new Error('The trip you are looking for does not exists or has been discontinued.');
   } else {
     return trip;
@@ -55,8 +57,6 @@ export async function getAll(parentValue, { orderBy = 'asc', from, to }) {
 export async function getAllSkip(parentValue, {
   to, from, date, skip = 1, amount = 10,
 }) {
-  console.log(to, from, date, skip, amount, 'test');
-
   const whereObject = {};
 
   if (from) {
@@ -87,7 +87,6 @@ export async function getAllSkip(parentValue, {
       .toDate(),
   };
 
-  console.log(whereObject, 'where object ------');
   const results = await models.Trips.findAndCountAll({
     offset: skip,
     limit: amount,
@@ -103,19 +102,19 @@ export async function getAllSkip(parentValue, {
       { model: models.TripDetails, as: 'tripDetails' },
     ],
   });
-  const final = { count: results.count, trips: results.rows };
+  const final = { count: results.count, trips: results.rows.filter(t => t.tripDetails) };
 
   return final;
 }
 // bulk create
 
 export async function bulkCreate(parentValue, { trips }, { auth }) {
-  console.log(trips);
   const test = await models.Trips.bulkCreate(trips);
   if (!test) {
+    console.log('bulkCreate', 'The trip you are looking for does not exists or has been discontinued.');
+
     throw new Error('The trip you are looking for does not exists or has been discontinued.');
   }
-  console.log(test);
 
   return test;
 }
@@ -145,6 +144,7 @@ export async function create(
       regionId: 1,
     });
   }
+
   if (true) {
     let newTime;
     if (time == null || time == 'ANY') {
@@ -170,17 +170,21 @@ export async function create(
       });
 
       if (test) {
-        const toCity = getCityById(null, { cityId: trip.newToCity ? newToCity.id : to });
-        const fromCity = getCityById(null, { cityId: trip.newFromCity ? newFromCity.id : from });
+        const toCity = getCityById(null, { cityId: newToCity ? newToCity.id : to });
+        const fromCity = getCityById(null, { cityId: newFromCity ? newFromCity.id : from });
 
         trip.tripDetails = test;
         trip.toCity = toCity;
         trip.fromCity = fromCity;
         return trip;
       }
-      throw new Error(' Something went');
+      console.log('tripCreate', 'Something went wrong');
+
+      throw new Error(' Something went wrorng');
     }
   }
+  console.log('tripCreate', 'Something went wrong');
+
   throw new Error('Operation denied.');
 }
 

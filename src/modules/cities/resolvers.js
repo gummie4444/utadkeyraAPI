@@ -11,6 +11,10 @@ export async function getCityById(parentValue, { cityId }) {
   });
   if (!city) {
     // City does not exists
+    console.log(
+      'getCityById',
+      'The city you are looking for does not exists or has been discontinued.',
+    );
     throw new Error('The city you are looking for does not exists or has been discontinued.');
   } else {
     return city;
@@ -34,6 +38,8 @@ export async function create(parentValue, { sId, name, regionId }, { auth }) {
       regionId,
     });
   }
+  console.log('createCity', 'Operation denied.');
+
   throw new Error('Operation denied.');
 }
 
@@ -51,6 +57,8 @@ export async function update(parentValue, {
       { where: { id } },
     );
   }
+  console.log('update', 'Operation denied.');
+
   throw new Error('Operation denied.');
 }
 
@@ -59,5 +67,7 @@ export async function remove(parentValue, { id }, { auth }) {
   if (auth.user && auth.user.role === params.user.roles.admin) {
     return models.Cities.destroy({ where: { id } });
   }
+  console.log('remove', 'Operation denied.');
+
   throw new Error('Operation denied.');
 }
