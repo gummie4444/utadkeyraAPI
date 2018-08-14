@@ -70,13 +70,14 @@ const getLocation = (to, cities) => {
 const cleanTrips = (trips, oldTrips, cities) => {
   const timeRegex = /^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
   console.log(trips.length, 'Length before filtering');
-
+  console.log(oldTrips.length, 'oldTrips');
   // Start by removing all the rides with invalid times
   // Then we remove all the future rides
   // Then we remove already inserted rides
   // And rides that have weird seats
   const filteredTrips = trips.filter(ride =>
-    timeRegex.test(ride.time) &&
+    !(ride.from !== -1 || ride.to !== -1) &&
+      timeRegex.test(ride.time) &&
       !oldTrips.some(oldTrip => parseInt(oldTrip.sId) === parseInt(ride.id)) &&
       !isNaN(ride.details.seats) &&
       moment(ride.date, 'DD.MM.YYYY').startOf('day') <
@@ -111,7 +112,7 @@ const insertTripsIntoDb = async (trips) => {
 
   const oldTrips = await getOldTrips();
   const finalTrips = cleanTrips(trips, oldTrips, cities);
-  console.log(finalTrips.length, 'New Items to be inserted');
+  console.log(finalTrips[0] || 0, 'New Items to be inserted');
 
   // TODO: add some handler if there is a error
   const allPromises = finalTrips.map(ride =>
@@ -119,6 +120,7 @@ const insertTripsIntoDb = async (trips) => {
 
   Promise.all(allPromises).then((results) => {
     console.log(results.length, 'Result for all');
+    console.log('--------------');
   });
 };
 
