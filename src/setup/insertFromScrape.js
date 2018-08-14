@@ -76,7 +76,8 @@ const cleanTrips = (trips, oldTrips, cities) => {
   // Then we remove already inserted rides
   // And rides that have weird seats
   const filteredTrips = trips.filter(ride =>
-    !(ride.from !== -1 || ride.to !== -1) &&
+    getLocation(ride.to, cities) !== -1 &&
+      getLocation(ride.from, cities) !== -1 &&
       timeRegex.test(ride.time) &&
       !oldTrips.some(oldTrip => parseInt(oldTrip.sId) === parseInt(ride.id)) &&
       !isNaN(ride.details.seats) &&
