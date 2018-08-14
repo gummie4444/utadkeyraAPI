@@ -79,7 +79,7 @@ const cleanTrips = (trips, oldTrips, cities) => {
     getLocation(ride.to, cities) !== -1 &&
       getLocation(ride.from, cities) !== -1 &&
       timeRegex.test(ride.time) &&
-      !oldTrips.some(oldTrip => parseInt(oldTrip.sId) === parseInt(ride.id)) &&
+      (oldTrips && !oldTrips.some(oldTrip => parseInt(oldTrip.sId) === parseInt(ride.id))) &&
       !isNaN(ride.details.seats) &&
       moment(ride.date, 'DD.MM.YYYY').startOf('day') <
         moment()
