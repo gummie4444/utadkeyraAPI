@@ -70,7 +70,7 @@ const getLocation = (to, cities) => {
 const cleanTrips = (trips, oldTrips, cities) => {
   const timeRegex = /^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
   console.log(trips && trips.length, 'Length before filtering');
-  console.log(oldtrips && oldTrips.length, 'oldTrips');
+  console.log(oldTrips && oldTrips.length, 'oldTrips');
   // Start by removing all the rides with invalid times
   // Then we remove all the future rides
   // Then we remove already inserted rides
